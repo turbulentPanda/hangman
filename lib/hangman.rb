@@ -32,12 +32,15 @@ class Hangman
     decrement_turns_remaining
   end
 
+
   private
   def choose_secret_word
     File.readlines('acceptable_hangman_words.txt').sample.strip
   end
 
-
+  def correct_guess?
+    self.secret_word.split("").all? { |letter| correct_letters.include?(letter) }
+  end
 
 
 end
