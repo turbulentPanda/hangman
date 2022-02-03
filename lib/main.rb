@@ -11,4 +11,4 @@ until game.game_over?
   game.play_one_turn(guess)
 end
 
-puts "The correct word was: #{game.secret_word}"
+puts game.get_game_results

@@ -42,6 +42,14 @@ class Hangman
     puts "Incorrect letters: #{self.incorrect_letters.join(" ")}"
   end
 
+  def get_game_results
+    if correct_guess?
+      "Congratulations! You guessed the secret word!"
+    else
+      "Sorry! Better luck next time. The secret word was \"#{self.secret_word}\""
+    end
+  end
+
   private
   def choose_secret_word
     File.readlines('acceptable_hangman_words.txt').sample.strip
