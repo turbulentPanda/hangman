@@ -28,20 +28,6 @@ class Hangman
     end
   end
 
-  def serialize
-    YAML.dump({
-      secret_word: self.secret_word,
-      turns_remaining: self.turns_remaining,
-      correct_letters: self.correct_letters,
-      guessed_letters: self.guessed_letters
-    })
-  end
-
-  def self.deserialize(serialized_content)
-    deserialized_data = YAML.load serialized_content
-    self.new(saved_data[:secret_word], saved_data[:turns_remaining], saved_data[:correct_letters], saved_data[:guessed_letters])
-  end
-
   def save_game
     puts "Enter a name for your game: "
     game_name = gets.chomp
@@ -53,7 +39,7 @@ class Hangman
         file_path = "saved_games/#{new_name}.txt"
       end
     end
-    File.open(file_path, "w+").puts(serialize)
+    File.open(file_path, "w+").puts(serialize_current_game)
   end
 
   private
@@ -89,4 +75,17 @@ class Hangman
     self.secret_word.split("").all? { |letter| self.correct_letters.include?(letter) }
   end
 
+  def serialize_current_game
+    YAML.dump({
+      secret_word: self.secret_word,
+      turns_remaining: self.turns_remaining,
+      correct_letters: self.correct_letters,
+      guessed_letters: self.guessed_letters
+    })
+  end
+
+  def self.deserialize(serialized_content)
+    deserialized_data = YAML.load serialized_content
+    self.new(saved_data[:secret_word], saved_data[:turns_remaining], saved_data[:correct_letters], saved_data[:guessed_letters])
+  end
 end
