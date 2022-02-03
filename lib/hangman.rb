@@ -8,12 +8,21 @@ class Hangman
     self.incorrect_letters = []
   end
 
+  def display_word(secret_word_string, correct_letters_array)
+    letter_array = Array.new(secret_word_string.length, '___')
+    secret_word_string.each_char.with_index do |letter, index| 
+      letter_array[index] = letter if correct_letters_array.include?(letter)
+    end
+    letter_array.join(" ")
+  end
+
   private
   def choose_secret_word
     File.readlines('acceptable_hangman_words.txt').sample.strip
   end
+
 end
 
 game = Hangman.new
-puts game.secret_word
-puts game.secret_word.length
+p game.display_word("christopher", ['c', 'h', 'r', 'p'])
+
