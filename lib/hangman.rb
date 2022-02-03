@@ -1,3 +1,4 @@
+require 'yaml'
 class Hangman
   attr_accessor :secret_word, :turns_remaining, :correct_letters, :guessed_letters
 
@@ -26,6 +27,17 @@ class Hangman
       "Sorry! Better luck next time. The secret word was \"#{self.secret_word}\""
     end
   end
+
+  def save_game
+    YAML.dump({
+      secret_word: self.secret_word,
+      turns_remaining: self.turns_remaining,
+      correct_letters: self.correct_letters,
+      guessed_letters: self.guessed_letters
+    })
+  end
+
+  
 
   private
 
