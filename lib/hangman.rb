@@ -8,19 +8,15 @@ class Hangman
     self.guessed_letters = []
   end
 
-  def decrement_turns_remaining
-    self.turns_remaining -= 1
-  end
-
   def evaluate_guess(guess)
     if self.secret_word.include?(guess) && !self.correct_letters.include?(guess)
       self.correct_letters << guess
     elsif self.correct_letters.include?(guess)
       decrement_turns_remaining
     else
-      guessed_letters << guess
       decrement_turns_remaining
     end
+    guessed_letters << guess
   end
 
   def display_word
@@ -51,6 +47,11 @@ class Hangman
   end
 
   private
+
+  def decrement_turns_remaining
+    self.turns_remaining -= 1
+  end
+
   def choose_secret_word
     File.readlines('acceptable_hangman_words.txt').sample.strip
   end
