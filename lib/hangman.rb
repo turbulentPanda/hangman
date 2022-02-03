@@ -1,11 +1,11 @@
 class Hangman
-  attr_accessor :secret_word, :turns_remaining, :correct_letters, :incorrect_letters
+  attr_accessor :secret_word, :turns_remaining, :correct_letters, :guessed_letters
 
   def initialize
     self.secret_word = choose_secret_word
     self.turns_remaining = 6
     self.correct_letters = []
-    self.incorrect_letters = []
+    self.guessed_letters = []
   end
 
   def decrement_turns_remaining
@@ -18,7 +18,7 @@ class Hangman
     elsif self.correct_letters.include?(guess)
       decrement_turns_remaining
     else
-      incorrect_letters << guess
+      guessed_letters << guess
       decrement_turns_remaining
     end
   end
@@ -39,7 +39,7 @@ class Hangman
     evaluate_guess(guess)
     puts display_word
     puts "Turns remaining: #{self.turns_remaining}"
-    puts "Incorrect letters: #{self.incorrect_letters.join(" ")}"
+    puts "Guessed letters: #{self.guessed_letters.join(" ")}"
   end
 
   def get_game_results
