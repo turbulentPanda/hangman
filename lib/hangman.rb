@@ -8,34 +8,39 @@ class Hangman
     self.incorrect_letters = []
   end
 
-  def evaluate_guess(secret_word, guess)
-    if secret_word.include?(guess) && !self.correct_letters.include?(guess)
+  def decrement_turns_remaining
+    self.turns_remaining -= 1
+  end
+
+  def evaluate_guess(guess)
+    if self.secret_word.include?(guess) && !self.correct_letters.include?(guess)
       self.correct_letters << guess
+    elsif self.correct_letters.include?(guess)
+      decrement_turns_remaining
+    else
+      incorrect_letters << guess
+      decrement_turns_remaining
     end
   end
 
   def display_word
-    letter_array = Array.new(secret_word_string.length, '___')
+    letter_array = Array.new(self.secret_word.length, '___')
     self.secret_word.each_char.with_index do |letter, index| 
       letter_array[index] = letter if self.correct_letters.include?(letter)
     end
     letter_array.join(" ")
   end
 
-  def decrement_turns_remaining
-    self.turns_remaining -= 1
-  end
-
-  def play_one_turn(secret_word, guess)
-    evaluate_guess(secret_word, guess)
-    display_word
-    decrement_turns_remaining
-  end
-
   def game_over?
     correct_guess? || self.turns_remaining == 0
   end
 
+  def play_one_turn(guess)
+    evaluate_guess(guess)
+    puts display_word
+    puts "Turns remaining: #{self.turns_remaining}"
+    puts "Incorrect letters: #{self.incorrect_letters.join(" ")}"
+  end
 
   private
   def choose_secret_word
