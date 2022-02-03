@@ -39,7 +39,7 @@ class Hangman
 
   def self.deserialize(serialized_content)
     deserialized_data = YAML.load serialized_content
-    self.new(saved_data[])
+    self.new(saved_data[:secret_word], saved_data[:turns_remaining], saved_data[:correct_letters], saved_data[:guessed_letters])
   end
 
   private
