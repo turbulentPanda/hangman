@@ -2,11 +2,11 @@ require 'yaml'
 class Hangman
   attr_accessor :secret_word, :turns_remaining, :correct_letters, :guessed_letters
 
-  def initialize
-    self.secret_word = choose_secret_word
-    self.turns_remaining = 6
-    self.correct_letters = []
-    self.guessed_letters = []
+  def initialize(secret_word = choose_secret_word, turns_remaining = 6, correct_letters = [], guessed_letters = [])
+    self.secret_word = secret_word
+    self.turns_remaining = turns_remaining
+    self.correct_letters = correct_letters
+    self.guessed_letters = guessed_letters
   end
 
   def game_over?
@@ -37,8 +37,8 @@ class Hangman
     })
   end
 
-  def self.load_game(saved_game)
-    saved_data = YAML.load saved_game
+  def self.deserialize(serialized_content)
+    deserialized_data = YAML.load serialized_content
     self.new(saved_data[])
   end
 
