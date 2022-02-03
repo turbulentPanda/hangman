@@ -42,6 +42,20 @@ class Hangman
     self.new(saved_data[:secret_word], saved_data[:turns_remaining], saved_data[:correct_letters], saved_data[:guessed_letters])
   end
 
+  def save_game
+    puts "Enter a name for your game: "
+    game_name = gets.chomp
+    file_path = "saved_games/#{game_name}.txt"
+    if File.exist?(file_path)
+      puts "That game already exists. Enter a new name or enter 'YES' to overwrite."
+      new_name = gets.chomp
+      unless new_name == 'YES'
+        file_path = "saved_games/#{new_name}.txt"
+      end
+    end
+    File.open(file_path, "w+").puts(serialize)
+  end
+
   private
 
   def choose_secret_word

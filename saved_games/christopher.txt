@@ -1,0 +1,12 @@
+---
+:secret_word: observation
+:turns_remaining: 5
+:correct_letters:
+- a
+- i
+- o
+:guessed_letters:
+- a
+- i
+- o
+- u

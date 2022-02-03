@@ -1,0 +1,13 @@
+---
+:secret_word: allowed
+:turns_remaining: 4
+:correct_letters:
+- a
+- o
+- e
+:guessed_letters:
+- a
+- i
+- o
+- u
+- e

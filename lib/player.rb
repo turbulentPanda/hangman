@@ -7,7 +7,7 @@ class Player
   def guess_letter
     puts "Please enter a letter: "
     letter = gets.chomp
-    until ALPHABET.include?(letter.downcase) && letter.length == 1
+    until (ALPHABET.include?(letter.downcase) && letter.length == 1) || letter == 'save'
       puts "Sorry, that is an invalid input. Please enter a single letter: ".colorize(:red)
       letter = gets.chomp
     end
