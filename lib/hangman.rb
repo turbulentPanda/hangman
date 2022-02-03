@@ -10,6 +10,10 @@ class Hangman
 
   private
   def choose_secret_word
-    File.readlines('acceptable_hangman_words.txt').sample
+    File.readlines('acceptable_hangman_words.txt').sample.strip
   end
 end
+
+game = Hangman.new
+puts game.secret_word
+puts game.secret_word.length
