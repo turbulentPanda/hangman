@@ -6,5 +6,4 @@ class Hangman
     self.correct_letters = []
     self.incorrect_letters = []
   end
-
 end
