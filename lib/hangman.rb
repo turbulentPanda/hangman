@@ -39,7 +39,7 @@ class Hangman
   end
 
   def correct_guess?
-    self.secret_word.split("").all? { |letter| correct_letters.include?(letter) }
+    self.secret_word.split("").all? { |letter| self.correct_letters.include?(letter) }
   end
 
 
