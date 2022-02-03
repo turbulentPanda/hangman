@@ -28,7 +28,7 @@ class Hangman
     end
   end
 
-  def save_game
+  def serialize
     YAML.dump({
       secret_word: self.secret_word,
       turns_remaining: self.turns_remaining,
@@ -37,7 +37,10 @@ class Hangman
     })
   end
 
-  
+  def self.load_game(saved_game)
+    saved_data = YAML.load saved_game
+    self.new(saved_data[])
+  end
 
   private
 
