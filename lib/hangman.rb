@@ -14,18 +14,31 @@ class Hangman
     end
   end
 
-  def display_word(secret_word_string, correct_letters_array)
+  def display_word
     letter_array = Array.new(secret_word_string.length, '___')
-    secret_word_string.each_char.with_index do |letter, index| 
-      letter_array[index] = letter if correct_letters_array.include?(letter)
+    self.secret_word.each_char.with_index do |letter, index| 
+      letter_array[index] = letter if self.correct_letters.include?(letter)
     end
     letter_array.join(" ")
+  end
+
+  def decrement_turns_remaining
+    self.turns_remaining -= 1
+  end
+
+  def play_one_turn(secret_word, guess)
+    evaluate_guess(secret_word, guess)
+    display_word
+    decrement_turns_remaining
   end
 
   private
   def choose_secret_word
     File.readlines('acceptable_hangman_words.txt').sample.strip
   end
+
+
+
 
 end
 
