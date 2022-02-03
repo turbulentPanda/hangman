@@ -32,6 +32,10 @@ class Hangman
     decrement_turns_remaining
   end
 
+  def game_over?
+    correct_guess? || self.turns_remaining == 0
+  end
+
 
   private
   def choose_secret_word
