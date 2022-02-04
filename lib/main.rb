@@ -18,7 +18,6 @@ else
   puts game.get_game_status
 end
 
-
 player = Player.new
 
 puts "A secret word has been chosen. Please enter your guesses, one letter at a time. "

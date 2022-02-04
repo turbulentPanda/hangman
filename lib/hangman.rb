@@ -1,4 +1,3 @@
-require 'pry-byebug'
 require 'yaml'
 class Hangman
   attr_accessor :secret_word, :turns_remaining, :correct_letters, :guessed_letters
@@ -71,8 +70,6 @@ class Hangman
   def evaluate_guess(guess)
     if self.secret_word.include?(guess) && !self.correct_letters.include?(guess)
       self.correct_letters << guess
-    elsif self.correct_letters.include?(guess)
-      decrement_turns_remaining
     else
       decrement_turns_remaining
     end
