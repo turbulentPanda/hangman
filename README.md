@@ -2,7 +2,9 @@
 
 ## Live Preview (replit)
 
+https://replit.com/@turbulentPanda/hangman
 
+(Press green 'Run' button to play)
 
 ## Brief Project Descripion
 
