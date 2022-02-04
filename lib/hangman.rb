@@ -25,11 +25,7 @@ class Hangman
   end
 
   def get_game_results
-    if correct_guess?
-      "Congratulations! You guessed the secret word!"
-    else
-      "Sorry! Better luck next time. The secret word was \"#{self.secret_word}\""
-    end
+    correct_guess? ? "Congratulations! You guessed the secret word!" : "You lost! The secret word was \"#{self.secret_word}\"\n\n"
   end
 
   def save_game
