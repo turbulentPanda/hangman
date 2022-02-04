@@ -1,4 +1,6 @@
+require 'colorize'
 require 'yaml'
+
 class Hangman
   attr_accessor :secret_word, :turns_remaining, :correct_letters, :guessed_letters
 
@@ -66,10 +68,11 @@ class Hangman
   def evaluate_guess(guess)
     if self.secret_word.include?(guess) && !self.correct_letters.include?(guess)
       self.correct_letters << guess
+      guessed_letters << guess.colorize(:green)
     else
       decrement_turns_remaining
+      guessed_letters << guess.colorize(:red)
     end
-    guessed_letters << guess
   end
 
   def correct_guess?
