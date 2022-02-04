@@ -18,12 +18,13 @@ else
     puts "That game does not exist. Starting a new game now."
     game = Hangman.new
   end
-  puts game.get_game_status
 end
+
+puts game.get_game_status
 
 player = Player.new
 
-puts "\nA secret word has been chosen. Please enter your guesses, one letter at a time. "
+puts "A secret word has been chosen. Please enter your guesses, one letter at a time. "
 puts "At any point, you may enter 'save' (without quotes) to save your progress and quit\n\n"
 
 # Play the Game
