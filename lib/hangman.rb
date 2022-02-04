@@ -45,7 +45,7 @@ class Hangman
   end
 
   def self.load_game
-    puts "These are the currently saved games: \n\n"
+    puts "\nThese are the currently saved games: \n\n"
     self.display_saved_games
     puts "\nPlease enter the name of the game you wish to load: \n\n"
     game_name = gets.chomp
