@@ -27,7 +27,7 @@ class Hangman
   end
 
   def get_game_results
-    correct_guess? ? "Congratulations! You guessed the secret word!" : "You lost! The secret word was \"#{self.secret_word}\"\n\n"
+    correct_guess? ? "Congratulations! You guessed the secret word!\n\n" : "You lost! The secret word was \"#{self.secret_word}\"\n\n"
   end
 
   def save_game
@@ -45,7 +45,9 @@ class Hangman
   end
 
   def self.load_game
-    puts "Please enter the name of the game you wish to load: "
+    puts "These are the currently saved games: \n\n"
+    self.display_saved_games
+    puts "\nPlease enter the name of the game you wish to load: \n\n"
     game_name = gets.chomp
     file_path = "saved_games/#{game_name}.txt"
     if File.exists?(file_path)
@@ -101,4 +103,11 @@ class Hangman
     saved_data = YAML.load serialized_game
     self.new(saved_data[:secret_word], saved_data[:turns_remaining], saved_data[:correct_letters], saved_data[:guessed_letters])
   end
+
+  def self.display_saved_games
+    Dir.glob('saved_games/*').each do |game|
+      puts File.basename(game, ".txt")
+    end
+  end
+
 end
