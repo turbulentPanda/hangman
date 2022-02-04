@@ -14,6 +14,14 @@ class Hangman
     correct_guess? || self.turns_remaining == 0
   end
 
+  def display_word
+    letter_array = Array.new(self.secret_word.length, '___')
+    self.secret_word.each_char.with_index do |letter, index| 
+      letter_array[index] = letter if self.correct_letters.include?(letter)
+    end
+    letter_array.join(" ")
+  end
+  
   def play_one_turn(guess)
     evaluate_guess(guess)
     puts display_word
@@ -73,14 +81,6 @@ class Hangman
       decrement_turns_remaining
     end
     guessed_letters << guess
-  end
-
-  def display_word
-    letter_array = Array.new(self.secret_word.length, '___')
-    self.secret_word.each_char.with_index do |letter, index| 
-      letter_array[index] = letter if self.correct_letters.include?(letter)
-    end
-    letter_array.join(" ")
   end
 
   def correct_guess?

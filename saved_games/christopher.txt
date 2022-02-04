@@ -1,12 +1,17 @@
 ---
 :secret_word: rescue
-:turns_remaining: 3
+:turns_remaining: 2
 :correct_letters:
 - e
 - u
+- r
+- s
 :guessed_letters:
 - a
 - e
 - i
 - o
 - u
+- r
+- r
+- s

@@ -15,6 +15,9 @@ else
     puts "That game does not exist. Starting a new game now."
     game = Hangman.new
   end
+  puts game.display_word
+  puts "Turns remaining: #{game.turns_remaining}"
+  puts "Guessed letters: #{game.guessed_letters.join(" ")}"
 end
 
 
