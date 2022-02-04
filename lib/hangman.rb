@@ -1,3 +1,4 @@
+require 'pry-byebug'
 require 'yaml'
 class Hangman
   attr_accessor :secret_word, :turns_remaining, :correct_letters, :guessed_letters
@@ -42,6 +43,17 @@ class Hangman
     File.open(file_path, "w+").puts(serialize_current_game)
   end
 
+  def self.load_game
+    puts "Please enter the name of the game you wish to load: "
+    game_name = gets.chomp
+    file_path = "saved_games/#{game_name}.txt"
+    if File.exists?(file_path)
+      deserialize_game(file_path)
+    else
+      nil
+    end
+  end
+
   private
 
   def choose_secret_word
@@ -77,15 +89,16 @@ class Hangman
 
   def serialize_current_game
     YAML.dump({
-      secret_word: self.secret_word,
-      turns_remaining: self.turns_remaining,
-      correct_letters: self.correct_letters,
-      guessed_letters: self.guessed_letters
+      secret_word: secret_word,
+      turns_remaining: turns_remaining,
+      correct_letters: correct_letters,
+      guessed_letters: guessed_letters
     })
   end
 
-  def self.deserialize(serialized_content)
-    deserialized_data = YAML.load serialized_content
+  def self.deserialize_game(serialized_game_file_path)
+    serialized_game = File.open(serialized_game_file_path)
+    saved_data = YAML.load serialized_game
     self.new(saved_data[:secret_word], saved_data[:turns_remaining], saved_data[:correct_letters], saved_data[:guessed_letters])
   end
 end

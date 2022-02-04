@@ -1,12 +1,12 @@
 ---
-:secret_word: observation
-:turns_remaining: 5
+:secret_word: rescue
+:turns_remaining: 3
 :correct_letters:
-- a
-- i
-- o
+- e
+- u
 :guessed_letters:
 - a
+- e
 - i
 - o
 - u

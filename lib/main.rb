@@ -1,7 +1,23 @@
 require_relative 'hangman.rb'
 require_relative 'player.rb'
 
-game = Hangman.new
+puts 'Welcome to Hangman!'
+puts '1) To play a new game, enter 1.'
+puts '2) To load a previously saved game, enter 2'
+
+new_game_or_load = gets.chomp.to_i
+
+if new_game_or_load == 1
+  game = Hangman.new
+else
+  game = Hangman.load_game
+  if game == nil
+    puts "That game does not exist. Starting a new game now."
+    game = Hangman.new
+  end
+end
+
+
 player = Player.new
 
 puts "A secret word has been chosen. Please enter your guesses, one letter at a time. "
